@@ -1,0 +1,1 @@
+Consensus lets participants agree on an ordered history of accepted transactions under a protocol's assumptions. Nodes can independently verify state transitions using protocol rules. Consensus on a transaction does not establish that a statement recorded in it is factually true.

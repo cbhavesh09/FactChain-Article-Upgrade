@@ -1,0 +1,1 @@
+A Merkle tree combines child hashes to produce a root hash. An inclusion proof supplies the sibling hashes along one path, allowing a verifier to recompute the root without downloading the entire tree. A trusted root lets the verifier detect changed leaves.

@@ -1,0 +1,50 @@
+:root {
+  color-scheme: dark;
+  --background: #000;
+  --panel: #121212;
+  --border: #3b3421;
+  --text: #fff8e6;
+  --muted: #c3bba5;
+  --yellow: #ffbf00;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--background); color: var(--text); font: 16px/1.6 system-ui, sans-serif; }
+main { width: min(100% - 2rem, 48rem); margin: 2.5rem auto 4rem; }
+.hero { margin-bottom: 1.75rem; text-align: center; }
+h1 { margin: 0; color: var(--yellow); font-size: clamp(2.8rem, 8vw, 4.8rem); line-height: 1; letter-spacing: -.055em; }
+.hero p { max-width: 28rem; margin: .8rem auto 1.2rem; }
+.hero-art { display: block; width: min(68vw, 19rem); height: auto; margin: 0 auto; }
+nav, .votes { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+nav { justify-content: center; margin-bottom: .75rem; }
+.mode { color: var(--muted); text-align: center; font-size: .875rem; margin: 0 0 1.5rem; }
+.hero p, details p, #generation p { color: var(--muted); }
+label, summary { display: block; font-weight: 600; }
+summary { display: list-item; cursor: pointer; }
+input, textarea, button { border: 1px solid var(--border); padding: .7rem .85rem; font: inherit; border-radius: .5rem; }
+input, textarea { width: 100%; background: var(--panel); color: var(--text); }
+button { background: var(--yellow); color: #181100; font-weight: 700; cursor: pointer; }
+button:disabled { opacity: .65; cursor: wait; }
+nav button, .votes button { background: var(--panel); color: var(--text); }
+button[aria-pressed="true"] { background: var(--yellow); color: #181100; }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .6rem; margin-top: .4rem; }
+details { margin-top: 1rem; }
+details[open] label { margin-top: .8rem; }
+article, #generation { padding: 1rem 1.25rem; border: 1px solid var(--border); border-radius: .75rem; background: var(--panel); margin-top: .8rem; }
+article h2 { margin: 0; font-size: 1.15rem; }
+code { overflow-wrap: anywhere; color: var(--yellow); }
+#answer { white-space: pre-wrap; }
+#publish input, #publish textarea { margin-bottom: .7rem; }
+#rankings li { margin-block: .6rem; }
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+@media (max-width: 36rem) {
+  main { margin: 1.6rem auto 3rem; }
+  .row { grid-template-columns: 1fr; }
+}
+#generation {
+  background: #102345;
+  border-color: #397dcc;
+  color: #edf6ff;
+  margin-bottom: 1rem;
+}
+#generation h2 { color: #9fd1ff; margin: 0; font-size: 1.2rem; }
+#generation #answer { color: inherit; margin: .45rem 0 0; }

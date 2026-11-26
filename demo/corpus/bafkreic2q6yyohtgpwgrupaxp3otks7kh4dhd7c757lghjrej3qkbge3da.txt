@@ -1,0 +1,1 @@
+IPFS (InterPlanetary File System) is a peer-to-peer protocol for storing and retrieving files by their content. Instead of asking a particular server for a file, you look it up using a content identifier (CID).

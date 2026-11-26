@@ -1,0 +1,119 @@
+[
+  {
+    "id": "cid",
+    "title": "How IPFS content identifiers work",
+    "tags": "ipfs cid content addressing hash sha256 integrity",
+    "cid": "bafkreihpk6rgfnmlj6zywyzs7trurqkxhr7fzite5zetwpljcvuorkt6ae",
+    "author": "FactChain sample library",
+    "likes": 8,
+    "dislikes": 1
+  },
+  {
+    "id": "pinning",
+    "title": "Why IPFS content needs pinning",
+    "tags": "ipfs pinning availability garbage collection peers gateway",
+    "cid": "bafkreicfuixj5wxzzx57nrrs2zaao45xd3uxaoasq6qkn2vejf7wzuyyn4",
+    "author": "FactChain sample library",
+    "likes": 6,
+    "dislikes": 2
+  },
+  {
+    "id": "merkle",
+    "title": "Merkle trees and inclusion proofs",
+    "tags": "merkle tree inclusion proof hash root blockchain",
+    "cid": "bafkreigple7ja5u2hcrwto52onntcczij7iuv752dhxz4rdz6qrxkfsv3u",
+    "author": "FactChain sample library",
+    "likes": 4,
+    "dislikes": 0
+  },
+  {
+    "id": "consensus",
+    "title": "What blockchain consensus decides",
+    "tags": "blockchain consensus validator chain fork transaction order",
+    "cid": "bafkreiff7jaf22ntaxjtabxohjrarvrgobkqtnyvefehfmo3fv2vtvvsnm",
+    "author": "FactChain sample library",
+    "likes": 5,
+    "dislikes": 1
+  },
+  {
+    "id": "rag",
+    "title": "How retrieval-augmented generation uses sources",
+    "tags": "rag retrieval augmented generation llm source context grounded",
+    "cid": "bafkreigrfh7jiucgt25vyysf4wq5djvkwzljhddgdfxyltojmlcwhphrfq",
+    "author": "FactChain sample library",
+    "likes": 9,
+    "dislikes": 1
+  },
+  {
+    "id": "etag",
+    "title": "HTTP ETags and conditional requests",
+    "tags": "http etag cache conditional if-none-match 304 bandwidth",
+    "cid": "bafkreicsbnmkflr4yo3fwuvoyvdwkmg7sud7xomydd6itle76di35iktym",
+    "author": "FactChain sample library",
+    "likes": 3,
+    "dislikes": 1
+  },
+  {
+    "id": "idempotency",
+    "title": "Idempotency keys for retried requests",
+    "tags": "idempotency retry duplicate request payment safe writes key",
+    "cid": "bafkreiaeqwrwftql5enhlffnij66pvavesqiqejsjb4cgwzjjbunh2jbp4",
+    "author": "FactChain sample library",
+    "likes": 5,
+    "dislikes": 2
+  },
+  {
+    "id": "reviews",
+    "title": "What community voting can tell you",
+    "tags": "community votes ranking credibility fact checking review",
+    "cid": "bafkreibtouy74lce47gwelwssg4a5un3c4xinedy46zojgk76s724o77ra",
+    "author": "FactChain sample library",
+    "likes": 3,
+    "dislikes": 1
+  },
+  {
+    "id": "ipfs",
+    "title": "IPFS",
+    "tags": "peer to peer distributed storage protocol",
+    "cid": "bafkreic2q6yyohtgpwgrupaxp3otks7kh4dhd7c757lghjrej3qkbge3da",
+    "author": "FactChain sample library",
+    "likes": 0,
+    "dislikes": 0
+  },
+  {
+    "id": "riverlight",
+    "title": "Riverlight Library",
+    "tags": "location address founder opening date books hours price membership reason accessibility rooms",
+    "cid": "bafkreihzlci3xrsyb3ekowa3eln2aamtaqqgduwec6yrfeltc2kmxlgxga",
+    "author": "FactChain fictional test articles",
+    "likes": 0,
+    "dislikes": 0
+  },
+  {
+    "id": "atlas",
+    "title": "Atlas Shuttle",
+    "tags": "transport vehicle route seats frequency fare operator rules stops",
+    "cid": "bafkreibe6m4c2ohmzmtkwck6xi4pkx63g4q3fvdqjsrtbhxnxdkbgx3keq",
+    "author": "FactChain fictional test articles",
+    "likes": 0,
+    "dislikes": 0
+  },
+  {
+    "id": "cedar-pass",
+    "title": "Cedar Day Pass",
+    "tags": "transit ticket cost price validity expiry refund comparison eligibility",
+    "cid": "bafkreifhis7enxahjledlvbuehovj5adz73w4u33n64cqcsecglljvelty",
+    "author": "FactChain fictional test articles",
+    "likes": 0,
+    "dislikes": 0
+  },
+  {
+    "id": "cedar-weekly",
+    "title": "Cedar Weekly Pass",
+    "tags": "transit ticket cost price validity renewal comparison duration",
+    "cid": "bafkreic7edzat57ioouupjd5ztzwtchhbqrcg2y4mhrm3xjgqhjjygoenq",
+    "author": "FactChain fictional test articles",
+    "likes": 0,
+    "dislikes": 0
+  }
+]

@@ -1,0 +1,49 @@
+name: Publish FactChain
+on:
+  push:
+    branches: [main]
+    paths: [demo/**, hackindia-frontend/**, .github/workflows/factchain-pages.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: factchain-pages
+  cancel-in-progress: true
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.publish.outputs.page_url }}
+    env:
+      VITE_LEADERBOARD_ADDRESS: ${{ vars.FACTCHAIN_CONTRACT_ADDRESS }}
+      VITE_READ_RPC_URL: ${{ vars.FACTCHAIN_READ_RPC_URL }}
+      VITE_IPFS_GATEWAY_URL: ${{ vars.FACTCHAIN_IPFS_GATEWAY_URL }}
+      VITE_IPFS_API_URL: ${{ vars.FACTCHAIN_IPFS_API_URL }}
+      VITE_CHAIN_ID: "11155111"
+      VITE_HASH_ROUTER: "true"
+      VITE_PAGED_REGISTRY: "true"
+      VITE_STAKED_REGISTRY: ${{ vars.FACTCHAIN_STAKED_REGISTRY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test demo/core.test.mjs
+      - name: Build wallet-backed site when configured
+        if: vars.FACTCHAIN_CONTRACT_ADDRESS != ''
+        working-directory: hackindia-frontend
+        run: |
+          node --input-type=module -e 'for (const key of ["VITE_READ_RPC_URL", "VITE_IPFS_GATEWAY_URL"]) { if (new URL(process.env[key]).protocol !== "https:") throw Error(key + " must be a public HTTPS URL"); }'
+          npm ci
+          npm run build -- --configLoader runner
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ vars.FACTCHAIN_CONTRACT_ADDRESS != '' && 'hackindia-frontend/dist' || 'demo' }}
+      - id: publish
+        uses: actions/deploy-pages@v4
+
+

@@ -1,0 +1,1 @@
+An ETag identifies a version of a representation. A client can send that tag in If-None-Match when revalidating a cached response. If the representation matches, the server can return 304 and omit the response body.

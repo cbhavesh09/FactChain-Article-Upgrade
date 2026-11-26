@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FactChain</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <h1>FactChain</h1>
+      <p>A community knowledge base with content-addressed articles and AI answers grounded in sources.</p>
+      <img class="hero-art" src="./factchain-bulb.png" width="668" height="673" alt="FactChain light bulb made from chain links">
+    </header>
+    <nav aria-label="FactChain">
+      <button type="button" data-view="explore" aria-pressed="true">Explore</button>
+      <button type="button" data-view="contribute" aria-pressed="false">Contribute</button>
+      <button type="button" data-view="leaderboard" aria-pressed="false">Leaderboard</button>
+    </nav>
+    <p class="mode">Local demo · Contributions and votes are stored in this browser.</p>
+    <section id="explore" aria-label="Explore articles">
+      <form id="search">
+        <label for="query">Search articles or ask a question</label>
+        <div class="row">
+          <input id="query" maxlength="300" placeholder="e.g. What is an IPFS CID?">
+          <button>Search</button>
+        </div>
+        <details>
+          <summary>IPFS gateway settings</summary>
+          <label for="gateway">HTTPS or local loopback gateway ending in /ipfs/</label>
+          <input id="gateway" type="url" placeholder="https://ipfs.io/ipfs/">
+        </details>
+      </form>
+      <p id="status" role="status"></p>
+      <section id="generation" aria-labelledby="answer-heading" hidden>
+        <h2 id="answer-heading">Answer</h2>
+        <p id="answer" role="status"></p>
+      </section>
+      <section id="sources" aria-label="Articles"></section>
+    </section>
+    <section id="contribute" hidden>
+      <h2>Contribute an article</h2>
+      <form id="publish">
+        <label for="title">Title</label><input id="title" maxlength="120" required>
+        <label for="author">Display name</label><input id="author" maxlength="60" required>
+        <label for="tags">Tags</label><input id="tags" maxlength="160">
+        <label for="body">Article</label><textarea id="body" maxlength="3000" rows="7" required></textarea>
+        <button>Publish to this browser</button>
+      </form>
+      <p id="publish-status" role="status"></p>
+    </section>
+    <section id="leaderboard" hidden>
+      <h2>Article leaderboard</h2>
+      <p>Ranked by the share of positive votes. Demo seed totals and your local votes are included.</p>
+      <ol id="rankings"></ol>
+    </section>
+  </main>
+</body>
+</html>
+
+
+

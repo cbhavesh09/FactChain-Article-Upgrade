@@ -1,0 +1,1 @@
+Pinning tells an IPFS node to retain content during garbage collection. A CID alone does not guarantee that any online node still has the data. Pinning on reachable nodes improves the chances that a gateway can find and retrieve a copy.

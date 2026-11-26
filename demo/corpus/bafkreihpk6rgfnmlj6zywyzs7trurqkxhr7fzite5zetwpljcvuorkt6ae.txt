@@ -1,0 +1,1 @@
+An IPFS content identifier includes a codec and a multihash. A client can recompute the hash of a raw block and compare the resulting CID with the expected CID. Two raw blocks with identical bytes and the same hashing parameters have the same CID.

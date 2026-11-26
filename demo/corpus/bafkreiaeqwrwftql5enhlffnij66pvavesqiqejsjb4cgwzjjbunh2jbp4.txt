@@ -1,0 +1,1 @@
+An idempotency key lets a server recognize retries of the same logical operation. The server stores the key with its result and returns that result on matching retries. A server should reject reuse of the key with a different payload.

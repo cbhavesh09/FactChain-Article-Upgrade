@@ -1,0 +1,1 @@
+Retrieval-augmented generation retrieves relevant documents and includes selected passages in a language model's input. Source references help readers inspect the evidence. A relevant passage can improve grounding, but a model can still misinterpret or invent a claim.
