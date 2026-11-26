@@ -222,5 +222,7 @@ test("location is found in a description after a pronunciation note", async () =
   };
   const answer = await generateAnswer("Where is the taj mahal", [article]);
   assert.match(answer, /Agra, Uttar Pradesh, India\. \[1\]$/);
+  assert.match(await generateAnswer("What is the Taj Mahal?", [article]), /is an ivory-white marble mausoleum/);
+  assert.equal(await generateAnswer("When was the Taj Mahal commissioned?", [article]), "It was commissioned in 1631. [1]");
 });
 

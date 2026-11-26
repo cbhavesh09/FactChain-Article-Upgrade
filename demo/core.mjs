@@ -110,7 +110,7 @@ function runPortableModel(prompt, signal, onProgress) {
 const questionTypes = [
   [/^where\b/i, /\b(?:is|are|was|were)\s+(?:(?:located|situated|based|found)\s+)?(?:in|at|near|on)\s+|\bstops at\b|\bis\s+(?:a|an)\s+[^.!?]{1,160}\s+on the (?:right |left )?bank of\b/i],
   [/^who\b/i, /\b(?:founded|operated|built|written|created|managed) by\b/i],
-  [/^when\b|^what time\b/i, /\b(?:opened|opens|closes|expires|started|launched)\b.*\b(?:\d|midnight)/i],
+  [/^when\b|^what time\b/i, /\b(?:opened|opens|closes|expires|started|launched|built|commissioned|completed|constructed|finished)\b.*(?:\b\d|\bmidnight\b)/i],
   [/^how (?:many|much|often|long)\b/i, /\d|\b(?:one day|seven (?:consecutive )?days|free|midnight)\b/i],
   [/^why\b/i, /\bbecause\b|\bso that\b|\bin order to\b|\bto make\b/i],
   [/^how (?:do|can|should)\b/i, /^to .+?,\s*\S/i],
@@ -151,7 +151,9 @@ function findAnswerSentence(query, sources) {
       const words = tokens(quote);
       const matches = term => words.some(word => word === term || word === term + "ed" || word === term + "ing" || word === term + "d");
       const overlap = questionTerms.filter(matches).length;
-      if (!titleTerms.some(matches) || (details.length && !details.some(matches))) continue;
+      const refersToTitle = titleTerms.some(matches) ||
+        (/^(?:it|they|its|their)\b/i.test(quote) && titleTerms.length > 0 && titleTerms.every(term => questionTerms.includes(term)));
+      if (!refersToTitle || (details.length && !details.some(matches))) continue;
       const pairedFacts = /\b(?:while|whereas)\b/i.test(quote);
       const score = overlap + (pairedFacts && /^(?:compare|what is the difference)\b/i.test(query.trim()) ? 1 : 0);
       if (!best || score > best.score) best = { quote, index, score };
@@ -219,7 +221,7 @@ export async function generateAnswer(query, sources, signal, onProgress) {
   if (definition) {
     const subject = tokens(definition[1]).join(" ");
     for (const [index, source] of sources.entries()) {
-      for (const sentence of source.text.match(/[^.!?]+[.!?]?/g) || []) {
+      for (const sentence of articleSentences(source.text)) {
         const statement = sentence.trim().match(/^(.+?)\s+(?:is|are)\s+(.+)$/i);
         if (statement && tokens(statement[1].replace(/\([^)]*\)/g, "")).join(" ") === subject
             && tokens(statement[2]).length >= 3) {
@@ -273,7 +275,11 @@ export async function generateAnswer(query, sources, signal, onProgress) {
     Number(index) >= 1 && Number(index) <= contextCount ? citation : ""
   ).trim() : "";
   const claim = text.replace(/^[\s"']+|[\s"'.!?]+$/g, "");
-  if (definition && tokens(claim).join(" ") === tokens(definition[1]).join(" ")) return excerpt;
+  const bareClaim = tokens(claim.replace(/\[\d+\]/g, "")).join(" ");
+  const queryTerms = tokens(query);
+  if ((definition && bareClaim === tokens(definition[1]).join(" ")) ||
+      sources.some(source => bareClaim === tokens(source.title).join(" ") &&
+        tokens(source.title).every(term => queryTerms.includes(term)))) return excerpt;
   const citations = sources.slice(0, contextCount).map((_, index) => `[${index + 1}]`).join(" ");
   if (portable) {
     if (/[a-z0-9]/i.test(claim) && !/^(unknown|not enough information)$/i.test(claim)
