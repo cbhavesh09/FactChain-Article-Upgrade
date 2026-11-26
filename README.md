@@ -30,15 +30,6 @@ Run `python demo/pin-corpus.py` with Kubo on your PATH. It pins each seed articl
 
 The seed catalog includes four clearly labeled fictional test articles for Riverlight Library, Atlas Shuttle, Cedar Day Pass, and Cedar Weekly Pass. The suite checks cited definitions, locations, people, dates, times, prices, counts, frequency, duration, lists, reasons, procedures, rules, eligibility, comparisons, missing evidence, and model failure. The explicit comparison case quotes a sentence that already compares the two passes. Arithmetic and reasoning across multiple articles are outside the tested extraction support.
 
-## Resume entry
-
-**FactChain | React, Solidity, IPFS, JavaScript, RAG, Transformers.js**
-
-- Extended a community article registry with on-device retrieval-augmented generation, retrieving the expected source first for **12/12 labeled queries** across an **8-article** benchmark.
-- Implemented raw CIDv1 verification and verified fallback for unavailable gateway responses, validating **8/8 byte-identical reads** through a real Kubo gateway.
-
-Original hackathon team: Parth Pawar, Krishna Chamarthy, and Bhavesh Chauhan.
-
 
 
 
