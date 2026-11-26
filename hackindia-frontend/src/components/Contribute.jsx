@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useWeb3 } from "../context/useWeb3";
-import ipfsClient, { canPublish, imageLimit, imageTypes, readArticle } from "../ipfs";
+import { canPublish, imageLimit, imageTypes, pinFile, readArticle } from "../ipfs";
 
 export default function Contribute() {
   const { leaderboard, staking } = useWeb3();
@@ -37,12 +37,10 @@ export default function Contribute() {
         const article = { title, body };
         if (file?.size) {
           setStatus("Pinning image to IPFS…");
-          const image = await ipfsClient.add(file, { pin: true });
-          article.image = { cid: image.cid.toString(), type: file.type, alt };
+          article.image = { cid: await pinFile(file), type: file.type, alt };
         }
         setStatus("Pinning fact to IPFS…");
-        const result = await ipfsClient.add(new TextEncoder().encode(JSON.stringify(article)), { pin: true });
-        cid = result.cid.toString();
+        cid = await pinFile(new File([JSON.stringify(article)], "fact.json", { type: "application/json" }));
       }
       setStatus("Confirm the publish transaction in your wallet.");
       const options = staking ? { value: await leaderboard.STAKE() } : {};
