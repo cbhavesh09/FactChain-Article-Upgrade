@@ -11,6 +11,22 @@ const client = canPublish ? create({
   timeout: 15000,
 }) : null;
 
+export async function pinFile(file) {
+  if (!api) return (await client.add(file, { pin: true })).cid.toString();
+  const body = new FormData();
+  body.set("file", file, file.name);
+  const response = await fetch(api.replace(/\/$/, "") + "/add?pin=true", {
+    method: "POST",
+    body,
+    signal: AbortSignal.timeout(20000),
+  });
+  const result = await response.json().catch(() => null);
+  if (!response.ok || !result?.Hash) {
+    throw new Error(result?.Message || `IPFS upload failed (HTTP ${response.status}).`);
+  }
+  return result.Hash;
+}
+
 async function* readChunks(cid, signal) {
   if (!/^[a-zA-Z0-9]{20,120}$/.test(cid)) throw new Error("Invalid IPFS CID.");
   if (!gateway) {
@@ -58,4 +74,3 @@ export function readImage(image, signal) {
 }
 
 export default client;
-
